@@ -1,0 +1,13 @@
+let express = require("express")
+let server = express()
+let http = require("http").createServer(server).listen(1919)
+let io = require("socket.io")(http)
+let fs = require("fs-extra")
+server.use(express.static(__dirname + '/icon.ico'))
+server.use(express.static('public'))
+server.use(express.static('js'))
+server.use("/img", express.static("img"))
+server.use("/icon", express.static("icon"))
+server.get("/", function(require, response){
+    response.sendFile(__dirname + "/mal.html")
+})
